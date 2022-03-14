@@ -1,0 +1,25 @@
+  .array-container {
+      /*Flexbox*/
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      margin: auto;
+      width: 90%;
+      justify-content: space-between;
+      height: 85vh;
+  }
+
+  .array-bar {
+      flex: 1 1 content;
+      background-color: rgb(216, 30, 91); 
+      border: 0.2px ridge rgb(161, 37, 79);
+      box-sizing: border-box;
+
+  }
+
+  .options {
+      text-align: center;
+      margin: auto;
+      height: 15vh;
+      background-color: grey;
+  }
