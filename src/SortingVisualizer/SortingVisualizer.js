@@ -16,7 +16,10 @@ const SortingVisualizer = () => {
     })
     const handleBubbleSort = arr => {
         const newArray = BubbleSort(arr)
-        console.log(newArray)
+        setmasterArray([...newArray])
+    }
+    const handleMergeSort = arr => {
+        const newArray = BubbleSort(arr)
         setmasterArray([...newArray])
     }
 
@@ -34,6 +37,8 @@ const SortingVisualizer = () => {
             <div className="options">
                 <button onClick={resetArray}>Generate New Array</button>
                 <button onClick={()=>{handleBubbleSort(masterArray)}}>Bubble Sort</button>
+                <button onClick={()=>{handleMergeSort(masterArray)}}>Merge Sort</button>
+                
             </div>
         </div>
 
