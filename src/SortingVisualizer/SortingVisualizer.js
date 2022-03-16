@@ -1,48 +1,52 @@
 import { useState,useEffect } from 'react';
 import './SortingVisualizer.css'
 import BubbleSort from '../SortingAlgorithms/BubbleSort'
+import DisplayArray from '../DisplayArray/DisplayArray';
 
 const SortingVisualizer = () => {
     const [masterArray,setmasterArray] = useState([])
+    const [currentCompare,setcurrentCompare] = useState({e1:null,e2:null})
+    const [currentSwap,setcurrentSwap] = useState({e1:null,e2:null})
     useEffect(()=>{
         resetArray()
     },[])
     const resetArray = (()=> {
         const array = []
-        for (let i = 0; i < 300; i++) {
+        for (let i = 0; i < 100; i++) {
             array.push((Math.random()*(76)+5))
         }
         setmasterArray(array)
     })
     const handleBubbleSort = arr => {
-        const newArray = BubbleSort(arr)
-        setmasterArray([...newArray])
+        BubbleSort(arr,AnimateCompare,AnimateSwap)
+        //setmasterArray([...newArray])
     }
-    const handleMergeSort = arr => {
-        const newArray = BubbleSort(arr)
-        setmasterArray([...newArray])
+    const AnimateSwap = (arr,e1,e2) => {
+        if (e1 && e2) {
+            setcurrentCompare({e1:null,e2:null})
+            setcurrentSwap({e1:e1,e2:e2})
+            setmasterArray([...arr])
+        }
+
+    }
+    const AnimateCompare = (arr,e1,e2) => {
+        if (e1 && e2) {
+            setcurrentCompare({e1:e1,e2:e2})
+            setcurrentSwap({e1:null,e2:null})
+            //setmasterArray([...arr])
+        }
     }
 
     return (
         <div className="content">
-            <div className = "array-container">
-                {masterArray.map((element,i)=> (
-                <div 
-                className="array-bar" 
-                key={i}
-                style={{height: `${element}vh`}}
-                ></div>
-                ))}
-            </div>
+            <DisplayArray masterArray={masterArray} currentCompare={currentCompare} currentSwap={currentSwap}/>
             <div className="options">
                 <button onClick={resetArray}>Generate New Array</button>
                 <button onClick={()=>{handleBubbleSort(masterArray)}}>Bubble Sort</button>
-                <button onClick={()=>{handleMergeSort(masterArray)}}>Merge Sort</button>
-                
             </div>
         </div>
 
     );
 }
  
-export default SortingVisualizer;
+export default SortingVisualizer
