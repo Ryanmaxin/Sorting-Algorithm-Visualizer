@@ -1,7 +1,6 @@
 import './DisplayArray.css'
 const DisplayArray = ({masterArray,currentCompare,currentSwap}) => {
     let color
-    console.log(currentSwap.e1,currentSwap.e2)
     return (  
         <div className = "array-container">
             {masterArray.map((element,i)=> {
