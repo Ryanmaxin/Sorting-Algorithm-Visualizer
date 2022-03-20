@@ -1,29 +1,47 @@
 import Sleep from "../Sleep";
 
-const Merge = (left, right) => {
-    let arr = []
-    while (left.length && right.length) {
-        if (left[0] < right[0]) {
-            arr.push(left.shift())
+let indexAssigner = 0
+
+const Merge = (leftObject, rightObject) => {
+    let arrayObject = { "arr": [], "indexStart": null, "indexEnd": null }
+    let li = 0
+    let ri = 0
+    while (leftObject.arr.length && rightObject.arr.length) {
+        if (leftObject.arr[0] < rightObject.arr[0]) {
+            arrayObject.arr.push(leftObject.arr.shift())
+            li += 1
         }
         else {
-            arr.push(right.shift())
+            arrayObject.arr.push(rightObject.arr.shift())
+            ri += 1
         }
     }
-    return [...arr, ...left, ...right]
+    const newArray = [...(arrayObject.arr), ...(leftObject.arr), ...(rightObject.arr)]
+    arrayObject.arr = newArray
+    arrayObject.indexStart = leftObject.indexStart
+    arrayObject.indexEnd += rightObject.indexEnd
+
+
+    return arrayObject
 }
 
-const MergeSort = async (array,animateSwap) => {
-    const half = array.length/2
 
-    if(array.length < 2) {
-        return array
+const MergeSort = (arrayObject) => {
+    const half = arrayObject.arr.length / 2
+    if (arrayObject.arr.length < 2) {
+        arrayObject.indexStart = indexAssigner
+        arrayObject.indexEnd = indexAssigner
+        indexAssigner += 1
+        return arrayObject
     }
-    const left = array.splice(0,half)
-    let merged = Merge(MergeSort(left), MergeSort(array))
-    animateSwap(merged)
-    Sleep(100)
+    const left = arrayObject.arr.splice(0, half)
+    const leftObject = {
+        "arr": left,
+        "indexStart": null,
+        "indexEnd": null
+    }
+    let merged = Merge(MergeSort(leftObject), MergeSort(arrayObject))
     return merged
 }
- 
+
 export default MergeSort;
