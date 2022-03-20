@@ -1,6 +1,7 @@
 import { useState,useEffect } from 'react';
 import './SortingVisualizer.css'
 import BubbleSort from '../SortingAlgorithms/BubbleSort'
+import MergeSort from '../SortingAlgorithms/MergeSort';
 import DisplayArray from '../DisplayArray/DisplayArray';
 
 let currentCompare = {e1:null,e2:null}
@@ -24,6 +25,10 @@ const SortingVisualizer = () => {
     })
     const handleBubbleSort = arr => {
         BubbleSort(arr,AnimateCompare,AnimateSwap)
+    }
+    const handleMergeSort = arr => {
+        const array = MergeSort(arr)
+        setmasterArray([...array])
     }
     const AnimateSwap = (arr,e1,e2,isBubbleSorting) => {
         if (e1 && e2) {
@@ -49,6 +54,7 @@ const SortingVisualizer = () => {
             <div className="options">
                 <button onClick={resetArray} disabled={isSorting}>Generate New Array</button>
                 <button onClick={()=>{handleBubbleSort(masterArray)}} disabled={isSorting}>Bubble Sort</button>
+                <button onClick={()=>{handleMergeSort(masterArray)}} disabled={isSorting}>Merge Sort</button>
                 <label htmlFor="array-size">Array Size</label>
                 <input onChange = {e=>{setarraySize(e.target.value)}} type="range" min="10" max="300" value={arraySize} step="10" id="array-size" disabled={isSorting}></input>
             </div>
