@@ -4,8 +4,9 @@ import BubbleSort from '../SortingAlgorithms/BubbleSort'
 import MergeSort from '../SortingAlgorithms/MergeSort';
 import DisplayArray from '../DisplayArray/DisplayArray';
 
-let currentCompare = { e1: null, e2: null }
+let currentCompare = { e: null}
 let currentSwap = { e1: null, e2: null }
+let currentMerge = {e:null}
 let isSorting = false
 
 const SortingVisualizer = () => {
@@ -25,7 +26,7 @@ const SortingVisualizer = () => {
     })
     const handleBubbleSort = arr => {
         console.time("BubbleSort")
-        BubbleSort(arr, AnimateCompare, AnimateSwap)
+        BubbleSort(arr, AnimateSwap)
     }
     const handleMergeSort = arr => {
         const arrayObject = {
@@ -33,12 +34,10 @@ const SortingVisualizer = () => {
             "indexStart": null,
             "indexEnd": null
         }
-        const array = MergeSort(arrayObject).arr
-        setmasterArray([...array])
+        MergeSort(arrayObject,AnimateCompare,AnimateMerge)
     }
     const AnimateSwap = (arr, e1, e2, isBubbleSorting) => {
         if (e1 && e2) {
-            currentCompare = { e1: null, e2: null }
             currentSwap = { e1: e1, e2: e2 }
             isSorting = isBubbleSorting
             setmasterArray([...arr])
@@ -46,21 +45,24 @@ const SortingVisualizer = () => {
             //console.log("NOT ANIMATING")
         }
     }
-    const AnimateCompare = (arr, e1, e2, isBubbleSorting) => {
-        if (e1 && e2) {
-            currentCompare = { e1: e1, e2: e2 }
-            currentSwap = { e1: null, e2: null }
-            isSorting = isBubbleSorting
+    const AnimateCompare = (arr, e, isMergeSorting) => {
+        if (e) {
+            currentCompare = { e: e}
+            isSorting = isMergeSorting
             setmasterArray([...arr])
         }
     }
-    // const AnimateMerge = (left, right, e, isMergeSorting) => {
-
-    // }
+    const AnimateMerge = (arr,e,isMergeSorting) => {
+        if (e!==-1) {
+            currentMerge = {e:e}
+            isSorting = isMergeSorting
+            setmasterArray([...arr])
+        }
+    }
 
     return (
         <div className="content">
-            <DisplayArray masterArray={masterArray} currentCompare={currentCompare} currentSwap={currentSwap} />
+            <DisplayArray masterArray={masterArray} currentCompare={currentCompare} currentSwap={currentSwap}/>
             <div className="options">
                 <button onClick={resetArray} disabled={isSorting}>Generate New Array</button>
                 <button onClick={() => { handleBubbleSort(masterArray) }} disabled={isSorting}>Bubble Sort</button>

@@ -4,7 +4,7 @@ const DisplayArray = ({masterArray,currentCompare,currentSwap}) => {
     return (  
         <div className = "array-container">
             {masterArray.map((element,i)=> {
-                {((currentCompare.e1 === i || currentCompare.e2 === i) ? (color="compare") : ((currentSwap.e1 === i || currentSwap.e2 === i) ? (color="swap") : (color="none")))}
+                {((currentCompare.e === i) ? (color="compare") : ((currentSwap.e1 === i || currentSwap.e2 === i) ? (color="swap") : (color="none")))}
                 return (
                 <div
                 className={color} 
