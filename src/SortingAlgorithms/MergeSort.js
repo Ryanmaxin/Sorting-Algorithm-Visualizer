@@ -9,7 +9,6 @@ const MergeSort = async (arrayObject,animateCompare,animateMerge) => {
         entireArray= [...arrayObject.arr]
         entireArrayAssigned = true
     }
-    console.log(entireArray)
     const Merge = async (leftObject, rightObject) => {
         let arrayObject = { "arr": [], "indexStart": null, "indexEnd": null }
         let li = 0
@@ -56,9 +55,10 @@ const MergeSort = async (arrayObject,animateCompare,animateMerge) => {
         entireArray[(merge.indexStart + i)] = merge.arr[i]
         await Sleep(4)
         animateCompare(entireArray,merge.indexStart + i,true)
+        console.log(entireArray)
         if ((merge.arr.length === entireArray.length) && (i===merge.arr.length - 1)) {
             await Sleep(4)
-            animateCompare(entireArray,-1,true)
+            animateCompare(entireArray,-1,false)
         }
     }
     return merge

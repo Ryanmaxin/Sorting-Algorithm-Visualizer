@@ -35,6 +35,7 @@ const SortingVisualizer = () => {
             "indexEnd": null
         }
         MergeSort(arrayObject,AnimateCompare,AnimateMerge)
+        console.log(masterArray)
     }
     const AnimateSwap = (arr, e1, e2, isBubbleSorting) => {
         if (e1 && e2) {

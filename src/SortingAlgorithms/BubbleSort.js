@@ -1,6 +1,6 @@
 import Sleep from '../Sleep'
 
-const BubbleSort = async (arr, AnimateCompare, AnimateSwap, isSorting) => {
+const BubbleSort = async (arr, AnimateSwap, isSorting) => {
     const time = Math.floor(Math.pow((10000), 1 / 2))
 
     let sum = 0
