@@ -1,6 +1,7 @@
 import Sleep from '../Sleep'
+import Swap from '../Swap'
 
-const BubbleSort = async (arr, AnimateSwap, isSorting) => {
+const BubbleSort = async (arr, AnimateSwap) => {
     const time = Math.floor(Math.pow((10000), 1 / 2))
 
     let sum = 0
@@ -15,9 +16,7 @@ const BubbleSort = async (arr, AnimateSwap, isSorting) => {
         for (let j = 0; j < (arr.length - i - 1); j++) {
             //console.time("animate")
             if (arr[j] > arr[j + 1]) {
-                let temp = arr[j]
-                arr[j] = arr[j + 1]
-                arr[j + 1] = temp
+                Swap(arr,j,j+1)
             }
             // console.log(interval)
 
