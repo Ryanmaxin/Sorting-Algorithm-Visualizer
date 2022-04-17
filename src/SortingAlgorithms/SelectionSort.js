@@ -11,7 +11,7 @@ const SelectionSort = async (arr,AnimateSwap) => {
                 min = j
             }
         }
-        if (min!=i) {
+        if (min!==i) {
             Swap(arr,min,i)
             await Sleep(4)
             AnimateSwap(arr,i,min,true)

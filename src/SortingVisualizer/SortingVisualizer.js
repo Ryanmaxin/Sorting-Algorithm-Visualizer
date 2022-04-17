@@ -42,11 +42,10 @@ const SortingVisualizer = () => {
             "indexStart": null,
             "indexEnd": null
         }
-        // console.log(arrayObject.arr)
         MergeSort(arrayObject,AnimateCompare)
     }
     const handleQuickSort = arr => {
-        setmasterArray([...QuickSort(arr, AnimateSwap)])
+        QuickSort(arr, 0,arr.length-1,AnimateSwap)
     }
     const AnimateSwap = (arr, e1, e2, isSwapping) => {
         if (e1 && e2) {
