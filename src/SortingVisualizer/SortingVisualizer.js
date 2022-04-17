@@ -28,13 +28,13 @@ const SortingVisualizer = () => {
         setmasterArray(array)
     })
     const handleBubbleSort = arr => {
-        BubbleSort(arr, AnimateSwap)
+        BubbleSort(arr, Animate)
     }
     const handleSelectionSort = arr => {
-        SelectionSort(arr, AnimateSwap)
+        SelectionSort(arr, Animate)
     }
     const handleInsertionSort = arr => {
-        InsertionSort(arr, AnimateSwap)
+        InsertionSort(arr, Animate)
     }
     const handleMergeSort = arr => {
         let arrayObject = {
@@ -42,26 +42,19 @@ const SortingVisualizer = () => {
             "indexStart": null,
             "indexEnd": null
         }
-        MergeSort(arrayObject,AnimateCompare)
+        MergeSort(arrayObject,Animate)
     }
     const handleQuickSort = arr => {
-        QuickSort(arr, 0,arr.length-1,AnimateSwap)
+        QuickSort(arr, 0,arr.length-1,Animate)
     }
-    const AnimateSwap = (arr, e1, e2, isSwapping) => {
+    const Animate = (arr, animatedElements, isSwapping) => {
         if (e1 && e2) {
-            currentSwap = { e1: e1, e2: e2 }
             isSorting = isSwapping
             setmasterArray([...arr])
         } else {
             //console.log("NOT ANIMATING")
         }
-    }
-    const AnimateCompare = (arr, e, isMergeSorting) => {
-        if (e) {
-            currentCompare = { e: e}
-            isSorting = isMergeSorting
-            setmasterArray([...arr])
-        }
+    
     }
     // const AnimateMerge = (arr,e,isMergeSorting) => {
     //     if (e!==-1) {
@@ -73,7 +66,7 @@ const SortingVisualizer = () => {
     // console.log(masterArray)
     return (
         <div className="content">
-            <DisplayArray masterArray={masterArray} currentCompare={currentCompare} currentSwap={currentSwap}/>
+            <DisplayArray masterArray={masterArray} currentCompare={currentCompare} currentSwap={animatedElements}/>
             <div className="options">
                 <button onClick={resetArray} disabled={isSorting}>Generate New Array</button>
                 <button onClick={() => { handleBubbleSort(masterArray) }} disabled={isSorting}>Bubble Sort</button>

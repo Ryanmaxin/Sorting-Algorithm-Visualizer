@@ -1,10 +1,10 @@
 import './DisplayArray.css'
-const DisplayArray = ({masterArray,currentCompare,currentSwap}) => {
+const DisplayArray = ({masterArray,animatedElements}) => {
     let color
     return (  
         <div className = "array-container">
             {masterArray.map((element,i)=> {
-                {((currentCompare.e === i) ? (color="compare") : ((currentSwap.e1 === i || currentSwap.e2 === i) ? (color="swap") : (color="none")))}
+                {((animatedElements.e === i) ? (color="compare") : color="none")}
                 return (
                 <div
                 className={color} 
