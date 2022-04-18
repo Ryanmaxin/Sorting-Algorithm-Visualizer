@@ -7,6 +7,10 @@ import InsertionSort from '../SortingAlgorithms/InsertionSort'
 import SelectionSort from '../SortingAlgorithms/SelectionSort'
 import QuickSort from '../SortingAlgorithms/QuickSort'
 import HeapSort from '../SortingAlgorithms/HeapSort';
+import * as React from 'react';
+import ReactDOM from 'react-dom';
+import Button from '@mui/material/Button';
+import Slider from '@mui/material/Slider'
 
 let currentAnimation = { e1: null, e2: null, e3: null }
 let isSorting = false
@@ -65,16 +69,34 @@ const SortingVisualizer = () => {
     return (
         <div className="content">
             <DisplayArray masterArray={masterArray} currentAnimation={currentAnimation} />
-            <div className="options">
-                <button onClick={resetArray} disabled={isSorting}>Generate New Array</button>
-                <button onClick={() => { handleBubbleSort(masterArray) }} disabled={isSorting}>Bubble Sort</button>
-                <button onClick={() => { handleSelectionSort(masterArray) }} disabled={isSorting}>SelectionSort</button>
-                <button onClick={() => { handleInsertionSort(masterArray) }} disabled={isSorting}>Insertion Sort</button>
-                <button onClick={() => { handleMergeSort(masterArray) }} disabled={isSorting}>Merge Sort</button>
-                <button onClick={() => { handleQuickSort(masterArray) }} disabled={isSorting}>Quick Sort</button>
-                <button onClick={() => { handleHeapSort(masterArray) }} disabled={isSorting}>Heap Sort</button>
-                <label htmlFor="array-size">Array Size</label>
-                <input onChange={e => { setarraySize(e.target.value) }} type="range" min="10" max="300" value={arraySize} step="10" id="array-size" disabled={isSorting}></input>
+            <div className='interaction'>
+                <div className="generate">
+                    <Button variant="contained" onClick={resetArray} disabled={isSorting}>Generate New Array</Button>
+                </div>
+                <div className="sorts">
+
+                    <div className="sortButton">
+                        <Button variant="contained" onClick={() => { handleBubbleSort(masterArray) }} disabled={isSorting}>Bubble Sort</Button >
+                    </div>
+                    <div className="sortButton">
+                        <Button variant="contained" onClick={() => { handleSelectionSort(masterArray) }} disabled={isSorting}>SelectionSort</Button>
+                    </div>
+                    <div className="sortButton">
+                        <Button variant="contained" onClick={() => { handleInsertionSort(masterArray) }} disabled={isSorting}>Insertion Sort</Button >
+                    </div>
+                    <div className="sortButton">
+                        <Button variant="contained" onClick={() => { handleMergeSort(masterArray) }} disabled={isSorting}>Merge Sort</Button >
+                    </div>
+                    <div className="sortButton">
+                        <Button variant="contained" onClick={() => { handleQuickSort(masterArray) }} disabled={isSorting}>Quick Sort</Button >
+                    </div>
+                    <div className="sortButton">
+                        <Button variant="contained" onClick={() => { handleHeapSort(masterArray) }} disabled={isSorting}>Heap Sort</Button >
+                    </div>
+                </div>
+                <div className="options">
+                    <Slider onChange={e => { setarraySize(e.target.value) }} step="10" max="300" min="15" disabled={isSorting} valueLabelDisplay="on" value={arraySize} />
+                </div>
             </div>
         </div>
 

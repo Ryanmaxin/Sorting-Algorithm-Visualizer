@@ -1,6 +1,20 @@
+.interaction {
+    text-align: center;
+    margin: auto;
+    height: 15vh;
+    background-color: grey;
+    display: flex;
+}
+
+.sorts {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.sortButton {
+    flex: 1 1 auto;
+}
+
 .options {
-      text-align: center;
-      margin: auto;
-      height: 15vh;
-      background-color: grey;
-  }
+    flex: 1 1 auto
+}
