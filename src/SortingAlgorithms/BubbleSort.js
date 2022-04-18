@@ -1,7 +1,7 @@
 import Sleep from '../Sleep'
 import Swap from '../Swap'
 
-const BubbleSort = async (arr, AnimateSwap) => {
+const BubbleSort = async (arr, Animate) => {
     const time = Math.floor(Math.pow((10000), 1 / 2))
 
     let sum = 0
@@ -16,7 +16,7 @@ const BubbleSort = async (arr, AnimateSwap) => {
         for (let j = 0; j < (arr.length - i - 1); j++) {
             //console.time("animate")
             if (arr[j] > arr[j + 1]) {
-                Swap(arr,j,j+1)
+                Swap(arr, j, j + 1)
             }
             // console.log(interval)
 
@@ -29,19 +29,19 @@ const BubbleSort = async (arr, AnimateSwap) => {
                     counter -= browserMinimum
 
                     //Subtract the estimate amount of time the swap takes
-                    AnimateSwap(arr, j, (j + 1), true)
+                    Animate(arr, { e1: j, e2: (j + 1) }, true)
                     counter -= arr.length / 100 * 2
                 }
             }
             else {
                 await Sleep(interval);
-                AnimateSwap(arr, j, (j + 1), true)
+                Animate(arr, { e1: j, e2: (j + 1) }, true)
             }
             //let endTime = console.timeEnd("animate")
         }
 
     }
-    AnimateSwap(arr, -1, -1, false)
+    Animate(arr, { e1: null, e2: null }, false)
     // console.timeEnd("BubbleSort")
 }
 

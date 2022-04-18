@@ -1,12 +1,12 @@
 import Sleep from "../Sleep";
 
 let indexAssigner = 0
-let entireArrayAssigned= false
+let entireArrayAssigned = false
 let entireArray = []
 
-const MergeSort = async (arrayObject,animateCompare) => {
+const MergeSort = async (arrayObject, Animate) => {
     if (!entireArrayAssigned) {
-        entireArray= [...arrayObject.arr]
+        entireArray = [...arrayObject.arr]
         entireArrayAssigned = true
     }
     const Merge = async (leftObject, rightObject) => {
@@ -17,13 +17,13 @@ const MergeSort = async (arrayObject,animateCompare) => {
             if (leftObject.arr[0] < rightObject.arr[0]) {
                 arrayObject.arr.push(leftObject.arr.shift())
                 await Sleep(4)
-                animateCompare(entireArray,(leftObject.indexStart + li),true)
+                Animate(entireArray, { e1: leftObject.indexStart + li }, true)
                 li += 1
             }
             else {
                 arrayObject.arr.push(rightObject.arr.shift())
                 await Sleep(4)
-                animateCompare([...entireArray],(rightObject.indexStart + ri),true)
+                Animate([...entireArray], { e1: rightObject.indexStart + ri }, true)
                 ri += 1
             }
         }
@@ -31,8 +31,8 @@ const MergeSort = async (arrayObject,animateCompare) => {
         arrayObject.arr = newArray
         arrayObject.indexStart = leftObject.indexStart
         arrayObject.indexEnd = rightObject.indexEnd
-    
-    
+
+
         return arrayObject
     }
     const half = arrayObject.arr.length / 2
@@ -47,20 +47,20 @@ const MergeSort = async (arrayObject,animateCompare) => {
         "arr": left,
         "indexStart": null,
         "indexEnd": null
-    }        
-            
-    
-    let merge = await Merge(await MergeSort(leftObject,animateCompare), await MergeSort(arrayObject,animateCompare))
-    for (let i = 0; i<merge.arr.length;i++) {
+    }
+
+
+    let merge = await Merge(await MergeSort(leftObject, Animate), await MergeSort(arrayObject, Animate))
+    for (let i = 0; i < merge.arr.length; i++) {
         entireArray[(merge.indexStart + i)] = merge.arr[i]
         await Sleep(4)
         //console.log(entireArray)
-        animateCompare([...entireArray],merge.indexStart + i,true)
-        if ((merge.arr.length === entireArray.length) && (i===merge.arr.length - 1)) {
-            animateCompare([...entireArray],-1,false)
+        Animate([...entireArray], { e1: merge.indexStart + i }, true)
+        if ((merge.arr.length === entireArray.length) && (i === merge.arr.length - 1)) {
+            Animate([...entireArray], { e1: null }, false)
             entireArrayAssigned = false
             entireArray = []
-            indexAssigner=0
+            indexAssigner = 0
         }
     }
     return merge

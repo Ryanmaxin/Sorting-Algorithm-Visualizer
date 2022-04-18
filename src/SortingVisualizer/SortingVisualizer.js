@@ -6,10 +6,9 @@ import DisplayArray from '../DisplayArray/DisplayArray';
 import InsertionSort from '../SortingAlgorithms/InsertionSort'
 import SelectionSort from '../SortingAlgorithms/SelectionSort'
 import QuickSort from '../SortingAlgorithms/QuickSort'
+import HeapSort from '../SortingAlgorithms/HeapSort';
 
-let currentCompare = { e: null}
-let currentSwap = { e1: null, e2: null }
-// let currentMerge = {e:null}
+let currentAnimation = { e1: null, e2: null, e3: null }
 let isSorting = false
 
 const SortingVisualizer = () => {
@@ -23,8 +22,7 @@ const SortingVisualizer = () => {
         for (let i = 0; i < arraySize; i++) {
             array.push((Math.random() * (76) + 5))
         }
-        currentCompare = { e1: null, e2: null }
-        currentSwap = { e1: null, e2: null }
+        currentAnimation = { e1: null, e2: null, e3: null }
         setmasterArray(array)
     })
     const handleBubbleSort = arr => {
@@ -42,19 +40,19 @@ const SortingVisualizer = () => {
             "indexStart": null,
             "indexEnd": null
         }
-        MergeSort(arrayObject,Animate)
+        MergeSort(arrayObject, Animate)
     }
     const handleQuickSort = arr => {
-        QuickSort(arr, 0,arr.length-1,Animate)
+        QuickSort(arr, 0, arr.length - 1, Animate)
+    }
+    const handleHeapSort = arr => {
+        HeapSort(arr, Animate)
     }
     const Animate = (arr, animatedElements, isSwapping) => {
-        if (e1 && e2) {
-            isSorting = isSwapping
-            setmasterArray([...arr])
-        } else {
-            //console.log("NOT ANIMATING")
-        }
-    
+        currentAnimation = animatedElements
+        isSorting = isSwapping
+        setmasterArray([...arr])
+
     }
     // const AnimateMerge = (arr,e,isMergeSorting) => {
     //     if (e!==-1) {
@@ -66,7 +64,7 @@ const SortingVisualizer = () => {
     // console.log(masterArray)
     return (
         <div className="content">
-            <DisplayArray masterArray={masterArray} currentCompare={currentCompare} currentSwap={animatedElements}/>
+            <DisplayArray masterArray={masterArray} currentAnimation={currentAnimation} />
             <div className="options">
                 <button onClick={resetArray} disabled={isSorting}>Generate New Array</button>
                 <button onClick={() => { handleBubbleSort(masterArray) }} disabled={isSorting}>Bubble Sort</button>
@@ -74,6 +72,7 @@ const SortingVisualizer = () => {
                 <button onClick={() => { handleInsertionSort(masterArray) }} disabled={isSorting}>Insertion Sort</button>
                 <button onClick={() => { handleMergeSort(masterArray) }} disabled={isSorting}>Merge Sort</button>
                 <button onClick={() => { handleQuickSort(masterArray) }} disabled={isSorting}>Quick Sort</button>
+                <button onClick={() => { handleHeapSort(masterArray) }} disabled={isSorting}>Heap Sort</button>
                 <label htmlFor="array-size">Array Size</label>
                 <input onChange={e => { setarraySize(e.target.value) }} type="range" min="10" max="300" value={arraySize} step="10" id="array-size" disabled={isSorting}></input>
             </div>
