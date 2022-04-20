@@ -18,6 +18,7 @@ let isSorting = false
 const SortingVisualizer = () => {
     const [masterArray, setmasterArray] = useState([])
     const [arraySize, setarraySize] = useState(100)
+    const [animationSpeed, setanimationSpeed] = useState(4)
     useEffect(() => {
         resetArray()
     }, [arraySize])
@@ -30,13 +31,13 @@ const SortingVisualizer = () => {
         setmasterArray(array)
     })
     const handleBubbleSort = arr => {
-        BubbleSort(arr, Animate)
+        BubbleSort(arr, Animate, animationSpeed)
     }
     const handleSelectionSort = arr => {
-        SelectionSort(arr, Animate)
+        SelectionSort(arr, Animate, animationSpeed)
     }
     const handleInsertionSort = arr => {
-        InsertionSort(arr, Animate)
+        InsertionSort(arr, Animate, animationSpeed)
     }
     const handleMergeSort = arr => {
         let arrayObject = {
@@ -44,13 +45,13 @@ const SortingVisualizer = () => {
             "indexStart": null,
             "indexEnd": null
         }
-        MergeSort(arrayObject, Animate)
+        MergeSort(arrayObject, Animate, animationSpeed)
     }
     const handleQuickSort = arr => {
-        QuickSort(arr, 0, arr.length - 1, Animate)
+        QuickSort(arr, 0, arr.length - 1, Animate, animationSpeed)
     }
     const handleHeapSort = arr => {
-        HeapSort(arr, Animate)
+        HeapSort(arr, Animate, animationSpeed)
     }
     const Animate = (arr, animatedElements, isSwapping) => {
         currentAnimation = animatedElements
@@ -58,14 +59,6 @@ const SortingVisualizer = () => {
         setmasterArray([...arr])
 
     }
-    // const AnimateMerge = (arr,e,isMergeSorting) => {
-    //     if (e!==-1) {
-    //         currentMerge = {e:e}
-    //         isSorting = isMergeSorting
-    //         setmasterArray([...arr])
-    //     }
-    // }
-    // console.log(masterArray)
     return (
         <div className="content">
             <DisplayArray masterArray={masterArray} currentAnimation={currentAnimation} />
@@ -95,7 +88,8 @@ const SortingVisualizer = () => {
                     </div>
                 </div>
                 <div className="options">
-                    <Slider onChange={e => { setarraySize(e.target.value) }} step="10" max="300" min="15" disabled={isSorting} valueLabelDisplay="on" value={arraySize} />
+                    <Slider onChange={e => { setarraySize(e.target.value) }} step="10" max="300" disabled={isSorting} valueLabelDisplay="on" value={arraySize} />
+                    <Slider onChange={e => { setanimationSpeed(e.target.value) }} step="10" max="300" marks disabled={isSorting} valueLabelDisplay="on" value={animationSpeed} />
                 </div>
             </div>
         </div>
