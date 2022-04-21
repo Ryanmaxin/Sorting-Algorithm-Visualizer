@@ -9,8 +9,7 @@ import QuickSort from '../SortingAlgorithms/QuickSort'
 import HeapSort from '../SortingAlgorithms/HeapSort';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import Button from '@mui/material/Button';
-import Slider from '@mui/material/Slider'
+import { Button, Slider, Select, MenuItem, InputLabel } from '@mui/material';
 
 let currentAnimation = { e1: null, e2: null, e3: null }
 let isSorting = false
@@ -19,6 +18,7 @@ const SortingVisualizer = () => {
     const [masterArray, setmasterArray] = useState([])
     const [arraySize, setarraySize] = useState(100)
     const [animationSpeed, setanimationSpeed] = useState(4)
+    const [pivot, setPivot] = useState('Median of Three')
     useEffect(() => {
         resetArray()
     }, [arraySize])
@@ -31,13 +31,13 @@ const SortingVisualizer = () => {
         setmasterArray(array)
     })
     const handleBubbleSort = arr => {
-        BubbleSort(arr, Animate, animationSpeed)
+        BubbleSort(arr, Animate)
     }
     const handleSelectionSort = arr => {
-        SelectionSort(arr, Animate, animationSpeed)
+        SelectionSort(arr, Animate)
     }
     const handleInsertionSort = arr => {
-        InsertionSort(arr, Animate, animationSpeed)
+        InsertionSort(arr, Animate)
     }
     const handleMergeSort = arr => {
         let arrayObject = {
@@ -45,13 +45,13 @@ const SortingVisualizer = () => {
             "indexStart": null,
             "indexEnd": null
         }
-        MergeSort(arrayObject, Animate, animationSpeed)
+        MergeSort(arrayObject, Animate)
     }
     const handleQuickSort = arr => {
-        QuickSort(arr, 0, arr.length - 1, Animate, animationSpeed)
+        QuickSort(arr, 0, arr.length - 1, Animate)
     }
     const handleHeapSort = arr => {
-        HeapSort(arr, Animate, animationSpeed)
+        HeapSort(arr, Animate)
     }
     const Animate = (arr, animatedElements, isSwapping) => {
         currentAnimation = animatedElements
@@ -59,37 +59,52 @@ const SortingVisualizer = () => {
         setmasterArray([...arr])
 
     }
+    const sortButton = {
+        flex: "1 1 auto",
+        borderRadius: "4rem",
+        width: "100%",
+        height: "100%",
+        textTransform: "none"
+
+
+    }
     return (
         <div className="content">
             <DisplayArray masterArray={masterArray} currentAnimation={currentAnimation} />
             <div className='interaction'>
-                <div className="generate">
-                    <Button variant="contained" onClick={resetArray} disabled={isSorting}>Generate New Array</Button>
-                </div>
+                <Button className="generate" variant="contained" onClick={resetArray} disabled={isSorting}>Generate New Array</Button>
+                <div className="break"></div>
                 <div className="sorts">
-
                     <div className="sortButton">
-                        <Button variant="contained" onClick={() => { handleBubbleSort(masterArray) }} disabled={isSorting}>Bubble Sort</Button >
+                        <Button sx={sortButton} variant="contained" onClick={() => { handleBubbleSort(masterArray) }} disabled={isSorting}>Bubble Sort</Button >
                     </div>
                     <div className="sortButton">
-                        <Button variant="contained" onClick={() => { handleSelectionSort(masterArray) }} disabled={isSorting}>SelectionSort</Button>
+                        <Button sx={sortButton} variant="contained" onClick={() => { handleSelectionSort(masterArray) }} disabled={isSorting}>Selection Sort</Button>
                     </div>
                     <div className="sortButton">
-                        <Button variant="contained" onClick={() => { handleInsertionSort(masterArray) }} disabled={isSorting}>Insertion Sort</Button >
+                        <Button sx={sortButton} variant="contained" onClick={() => { handleInsertionSort(masterArray) }} disabled={isSorting}>Insertion Sort</Button >
                     </div>
                     <div className="sortButton">
-                        <Button variant="contained" onClick={() => { handleMergeSort(masterArray) }} disabled={isSorting}>Merge Sort</Button >
+                        <Button sx={sortButton} variant="contained" onClick={() => { handleMergeSort(masterArray) }} disabled={isSorting}>Merge Sort</Button >
                     </div>
                     <div className="sortButton">
-                        <Button variant="contained" onClick={() => { handleQuickSort(masterArray) }} disabled={isSorting}>Quick Sort</Button >
+                        <Button sx={sortButton} variant="contained" onClick={() => { handleQuickSort(masterArray) }} disabled={isSorting}>Quick Sort</Button >
                     </div>
                     <div className="sortButton">
-                        <Button variant="contained" onClick={() => { handleHeapSort(masterArray) }} disabled={isSorting}>Heap Sort</Button >
+                        <Button sx={sortButton} variant="contained" onClick={() => { handleHeapSort(masterArray) }} disabled={isSorting}>Heap Sort</Button >
                     </div>
                 </div>
+                <div className="break"></div>
                 <div className="options">
-                    <Slider onChange={e => { setarraySize(e.target.value) }} step="10" max="300" disabled={isSorting} valueLabelDisplay="on" value={arraySize} />
-                    <Slider onChange={e => { setanimationSpeed(e.target.value) }} step="10" max="300" marks disabled={isSorting} valueLabelDisplay="on" value={animationSpeed} />
+                    <InputLabel id="size">Array Size and Speed</InputLabel>
+                    <Slider onChange={e => { setarraySize(e.target.value) }} step="10" max="300" disabled={isSorting} valueLabelDisplay="on" value={arraySize} id="size" />
+                    <InputLabel id="pivot">Pivot Selection</InputLabel>
+                    <Select onChange={e => { setPivot(e.target.value) }} value={pivot} autoWidth="false" id="pivot">
+                        <MenuItem value="Median of Three">Median of Three</MenuItem>
+                        <MenuItem value="Random">Random</MenuItem>
+                        <MenuItem value="First">First</MenuItem>
+                        <MenuItem value="Last">Last</MenuItem>
+                    </Select>
                 </div>
             </div>
         </div>
