@@ -1,4 +1,4 @@
-import Sleep from "../Sleep";
+import Verify from "../Verify"
 
 let indexAssigner = 0
 let entireArrayAssigned = false
@@ -16,14 +16,12 @@ const MergeSort = async (arrayObject, Animate) => {
         while (leftObject.arr.length && rightObject.arr.length) {
             if (leftObject.arr[0] < rightObject.arr[0]) {
                 arrayObject.arr.push(leftObject.arr.shift())
-                await Sleep(4)
-                Animate(entireArray, { e1: leftObject.indexStart + li }, true)
+                await Animate(entireArray, { e1: leftObject.indexStart + li }, true)
                 li += 1
             }
             else {
                 arrayObject.arr.push(rightObject.arr.shift())
-                await Sleep(4)
-                Animate([...entireArray], { e1: rightObject.indexStart + ri }, true)
+                await Animate([...entireArray], { e1: rightObject.indexStart + ri }, true)
                 ri += 1
             }
         }
@@ -53,11 +51,11 @@ const MergeSort = async (arrayObject, Animate) => {
     let merge = await Merge(await MergeSort(leftObject, Animate), await MergeSort(arrayObject, Animate))
     for (let i = 0; i < merge.arr.length; i++) {
         entireArray[(merge.indexStart + i)] = merge.arr[i]
-        await Sleep(4)
         //console.log(entireArray)
-        Animate([...entireArray], { e1: merge.indexStart + i }, true)
+        await Animate([...entireArray], { e1: merge.indexStart + i }, true)
         if ((merge.arr.length === entireArray.length) && (i === merge.arr.length - 1)) {
-            Animate([...entireArray], { e1: null }, false)
+            await Animate([...entireArray], { e1: null }, false)
+            await Verify([...entireArray], Animate)
             entireArrayAssigned = false
             entireArray = []
             indexAssigner = 0

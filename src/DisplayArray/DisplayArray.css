@@ -11,7 +11,8 @@
 }
 
 .none,
-.compare {
+.compare,
+.verify {
     flex: 1 1 content;
 }
 
@@ -21,4 +22,8 @@
 
 .compare {
     background-color: rgb(136, 11, 119);
+}
+
+.verify {
+    background-color: green;
 }
