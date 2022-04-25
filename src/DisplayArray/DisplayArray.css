@@ -12,7 +12,8 @@
 
 .none,
 .compare,
-.verify {
+.verify,
+.swap {
     flex: 1 1 content;
 }
 
@@ -26,4 +27,8 @@
 
 .verify {
     background-color: green;
+}
+
+.swap {
+    background-color: blue
 }

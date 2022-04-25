@@ -16,38 +16,57 @@
     flex: 1 1 auto;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 2vh 0 0 0;
+    padding: 1vh 0 0 0;
+    width: 40%
 }
 
 .sortButton {
-    width: 11vh;
-    padding: 0 0.4rem 2vh 0.4rem
+    width: 30%;
+    padding: 0 0 1vh 0
 }
 
 .options {
-    flex: 6 0 auto;
-    padding: 2vh 0 2vh 0;
-    min-width: 30%
-}
-
-.generate {
-    height: 100%;
+    flex: 6 0 0;
+    padding: 1vh 0.5% 1vh 0;
+    width: 40%
 }
 
 .break {
     border: 2px solid black;
     border-radius: 50px;
-    margin: 2vh 0.4rem 2vh 0.4rem
+    margin: 1vh 0.5% 1vh 0.5%
 }
 
 .about {
-    padding: 1vh 0 1vh 0
+    padding: 1vh 0 1vh 0;
+    display: flex;
+    flex: 12 1 0;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%
 }
 
 .about h2 {
-    margin-top: 0
+    margin: 0;
+    padding: 0
 }
 
 .about p {
-    width: 50%
+    width: 70%;
+    margin: 0;
+    display: inline-block;
+}
+
+.generator {
+    width: 10%
+}
+
+.legend {
+    width: 10%;
+    padding: 1vh 0 1vh 0;
+    text-align: center;
+}
+
+.legend h2 {
+    margin: 0
 }

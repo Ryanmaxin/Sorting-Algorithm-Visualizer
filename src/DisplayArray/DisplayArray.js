@@ -1,11 +1,10 @@
 import './DisplayArray.css'
-import Sleep from '../Sleep';
-const DisplayArray = ({ masterArray, currentAnimation, isVerifying }) => {
+const DisplayArray = ({ masterArray, currentAnimation, isVerifying, type }) => {
     let color
     return (
         <div className="array-container">
             {masterArray.map((element, i) => {
-                { !isVerifying && (((currentAnimation.e1 === i) || (currentAnimation.e2 === i) || (currentAnimation.e3 === i)) ? (color = "compare") : color = "none") }
+                { !isVerifying && (((currentAnimation.e1 === i) || (currentAnimation.e2 === i) || (currentAnimation.e3 === i)) ? (color = type) : color = "none") }
                 { isVerifying && ((i <= currentAnimation.e1) ? (color = "verify") : (color = "none")) }
                 return (
                     <div

@@ -19,12 +19,14 @@ let isReset = true
 let currentSort = null
 let isSorted = false
 let isSkipped = false
+let animateType = "none"
+
 
 const SortingVisualizer = () => {
     const [masterArray, setmasterArray] = useState([])
     const [arraySize, setarraySize] = useState(100)
     const [pivot, setPivot] = useState('Median of Three')
-    const [sortingSpeed, setsortingSpeed] = useState(3)
+    const [sortingSpeed, setsortingSpeed] = useState(2)
     useEffect(() => {
         resetArray()
     }, [arraySize])
@@ -68,18 +70,16 @@ const SortingVisualizer = () => {
         currentSort = "HeapSort"
         HeapSort(arr, Animate)
     }
-    const Animate = async (arr, animatedElements, isSwapping, sorted = false) => {
+    const Animate = async (arr, animatedElements, isSwapping, type = "none") => {
         currentAnimation = animatedElements
+        animateType = type
         isSorting = isSwapping
         isReset = false
-        isSorted = sorted
-        if (isSwapping) {
-            if (!isSkipped) {
-                await Sleep()
-            }
-            else {
-                Sleep()
-            }
+        if (!isSorting) {
+            isSorted = true
+        }
+        if (isSwapping && !isSkipped) {
+            await Sleep()
         }
         setmasterArray([...arr])
     }
@@ -87,10 +87,10 @@ const SortingVisualizer = () => {
         let ms = null
         switch (sortingSpeed) {
             case 0:
-                ms = 4
+                ms = 0
                 break;
             case 1:
-                ms = 4
+                ms = 2
                 break;
             case 2:
                 ms = 4
@@ -104,7 +104,9 @@ const SortingVisualizer = () => {
             default:
                 break;
         }
-        return new Promise(resolve => setTimeout(resolve, ms));
+        if (!isSkipped) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
     }
 
     const sortButton = {
@@ -117,11 +119,8 @@ const SortingVisualizer = () => {
     }
     const generate = {
         borderRadius: "0",
-        width: "15vh",
-        padding: "0"
-    }
-    const legend = {
-        textAlign: "center"
+        height: "100%",
+        width: "100%"
     }
     const skip = {
         display: "fixed",
@@ -129,15 +128,16 @@ const SortingVisualizer = () => {
         left: "47%",
         right: "47%"
     }
+    const slideSettings = {
+
+    }
     return (
         <div className="content">
             {isSorting && <Button sx={skip} variant="contained" onClick={e => { isSkipped = true }}>Skip To End</Button>}
-            <DisplayArray masterArray={masterArray} currentAnimation={currentAnimation} isVerifying={isSorted} />
+            <DisplayArray masterArray={masterArray} currentAnimation={currentAnimation} isVerifying={isSorted} type={animateType} />
             <div className='interaction'>
-                <Button sx={generate} variant="contained" onClick={resetArray} disabled={isSorting}>Generate New Array</Button>
-                <div className="break"></div>
-                <div className="legend">
-                    <h2>Legend</h2>
+                <div className="generator">
+                    <Button sx={generate} variant="contained" onClick={resetArray} disabled={isSorting}>Generate New Array</Button>
                 </div>
                 <div className="break"></div>
                 {isReset && <div className="sorts">
@@ -166,11 +166,15 @@ const SortingVisualizer = () => {
                     {currentSort && <Descriptions sortType={currentSort} />}
                 </div>}
                 <div className="break"></div>
-                <div className="options">
+                <div className="legend">
+                    <h2>Legend</h2>
+                </div>
+                <div className="break"></div>
+                {isReset && <div className="options">
                     <InputLabel id="size">Array Size</InputLabel>
-                    <Slider onChange={e => { setarraySize(e.target.value) }} step={10} max={300} min={10} disabled={!isReset} valueLabelDisplay="on" value={arraySize} id="size" />
+                    <Slider sx={slideSettings} onChange={e => { setarraySize(e.target.value) }} step={10} max={300} min={10} disabled={!isReset} valueLabelDisplay="on" value={arraySize} id="size" />
                     <InputLabel id="speed">Sorting Speed</InputLabel>
-                    <Slider onChange={e => { setsortingSpeed(e.target.value) }} marks step={1} max={4} min={0} disabled={!isReset} valueLabelDisplay="on" value={sortingSpeed} id="speed" />
+                    <Slider sx={slideSettings} onChange={e => { setsortingSpeed(e.target.value) }} marks step={1} max={4} min={0} disabled={!isReset} valueLabelDisplay="on" value={sortingSpeed} id="speed" />
                     <InputLabel id="pivot">Pivot Selection</InputLabel>
                     <Select onChange={e => { setPivot(e.target.value) }} value={pivot} autoWidth={false} id="pivot" disabled={!isReset}>
                         <MenuItem value="Median of Three">Median of Three</MenuItem>
@@ -178,7 +182,7 @@ const SortingVisualizer = () => {
                         <MenuItem value="First">First</MenuItem>
                         <MenuItem value="Last">Last</MenuItem>
                     </Select>
-                </div>
+                </div>}
             </div>
         </div>
 
