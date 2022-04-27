@@ -18,8 +18,9 @@ let isSorting = false
 let isReset = true
 let currentSort = null
 let isSorted = false
-let isSkipped = false
 let animateType = "none"
+let isSkipped = false
+let id
 
 
 const SortingVisualizer = () => {
@@ -39,6 +40,7 @@ const SortingVisualizer = () => {
         isReset = true
         isSorted = false
         currentSort = null
+        isSkipped = false
         setmasterArray(array)
     })
     const handleBubbleSort = arr => {
@@ -70,7 +72,7 @@ const SortingVisualizer = () => {
         currentSort = "HeapSort"
         HeapSort(arr, Animate)
     }
-    const Animate = async (arr, animatedElements, isSwapping, type = "none") => {
+    const Animate = (arr, animatedElements, isSwapping, type = "none") => {
         currentAnimation = animatedElements
         animateType = type
         isSorting = isSwapping
@@ -78,19 +80,24 @@ const SortingVisualizer = () => {
         if (!isSorting) {
             isSorted = true
         }
-        if (isSwapping && !isSkipped) {
-            await Sleep()
-        }
+        // if (isSkipped) {
+        //     clearTimeout(id)
+        //     console.log("HELLO")
+        // }
         setmasterArray([...arr])
+        console.log("HELLO")
+        // if (isSwapping && !isSkipped) {
+        //     await Sleep()
+        // }
     }
     const Sleep = () => {
         let ms = null
         switch (sortingSpeed) {
             case 0:
-                ms = 0
+                ms = 4
                 break;
             case 1:
-                ms = 2
+                ms = 4
                 break;
             case 2:
                 ms = 4
@@ -104,9 +111,9 @@ const SortingVisualizer = () => {
             default:
                 break;
         }
-        if (!isSkipped) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
+            return new Promise(resolve => {
+                id = setTimeout(resolve, ms)
+            });
     }
 
     const sortButton = {
@@ -123,17 +130,17 @@ const SortingVisualizer = () => {
         width: "100%"
     }
     const skip = {
-        display: "fixed",
+        position: "absolute",
         top: "0.5rem",
-        left: "47%",
-        right: "47%"
+        left: "45%",
+        right: "45%"
     }
     const slideSettings = {
-
+        // width: "50%"
     }
     return (
         <div className="content">
-            {isSorting && <Button sx={skip} variant="contained" onClick={e => { isSkipped = true }}>Skip To End</Button>}
+            {isSorting && <Button sx={skip} variant="contained" onClick={async ()=>{isSkipped=true}}>Skip To End</Button>}
             <DisplayArray masterArray={masterArray} currentAnimation={currentAnimation} isVerifying={isSorted} type={animateType} />
             <div className='interaction'>
                 <div className="generator">
@@ -171,17 +178,25 @@ const SortingVisualizer = () => {
                 </div>
                 <div className="break"></div>
                 {isReset && <div className="options">
+                    <div className="option">
                     <InputLabel id="size">Array Size</InputLabel>
-                    <Slider sx={slideSettings} onChange={e => { setarraySize(e.target.value) }} step={10} max={300} min={10} disabled={!isReset} valueLabelDisplay="on" value={arraySize} id="size" />
-                    <InputLabel id="speed">Sorting Speed</InputLabel>
-                    <Slider sx={slideSettings} onChange={e => { setsortingSpeed(e.target.value) }} marks step={1} max={4} min={0} disabled={!isReset} valueLabelDisplay="on" value={sortingSpeed} id="speed" />
+                    <Slider size="small" sx={slideSettings} onChange={e => { setarraySize(e.target.value) }} step={10} max={300} min={10} disabled={!isReset} valueLabelDisplay="on" value={arraySize} id="size" />
+                    </div>
+                    <div className="option">
                     <InputLabel id="pivot">Pivot Selection</InputLabel>
-                    <Select onChange={e => { setPivot(e.target.value) }} value={pivot} autoWidth={false} id="pivot" disabled={!isReset}>
+                    <Select sx={slideSettings} onChange={e => { setPivot(e.target.value) }} value={pivot} autoWidth={false} id="pivot" disabled={!isReset}>
                         <MenuItem value="Median of Three">Median of Three</MenuItem>
                         <MenuItem value="Random">Random</MenuItem>
                         <MenuItem value="First">First</MenuItem>
                         <MenuItem value="Last">Last</MenuItem>
                     </Select>
+                    </div>
+                    <div className="option">
+                    <InputLabel id="speed">Sorting Speed</InputLabel>
+                    <Slider size="small" sx={slideSettings} onChange={e => { setsortingSpeed(e.target.value) }} marks step={1} max={4} min={0} disabled={!isReset} valueLabelDisplay="on" value={sortingSpeed} id="speed" />
+                    </div>
+                    
+                    
                 </div>}
             </div>
         </div>

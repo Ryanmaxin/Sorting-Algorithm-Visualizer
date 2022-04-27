@@ -26,9 +26,16 @@
 }
 
 .options {
+    display: flex;
     flex: 6 0 0;
     padding: 1vh 0.5% 1vh 0;
-    width: 40%
+    width: 40%;
+    flex-wrap: wrap;
+    column-gap: 5%
+}
+
+.option {
+    width: 47.5%
 }
 
 .break {

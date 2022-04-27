@@ -7,11 +7,11 @@ const InsertionSort = async (arr, animate) => {
         j = i - 1
         while (j >= 0 && arr[j] > key) {
             arr[j + 1] = arr[j]
-            await animate(arr, { e1: j + 1, e2: j }, true)
+            await animate(arr, { e1: j + 1, e2: j }, true,"swap")
             j = j - 1
         }
         arr[j + 1] = key
-        await animate(arr, { e1: j + 1, e2: i }, true)
+        await animate(arr, { e1: j + 1, e2: i }, true,"swap")
 
     }
     await animate(arr, { e1: null, e2: null }, false)

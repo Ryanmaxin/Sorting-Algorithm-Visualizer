@@ -1,7 +1,7 @@
 import Swap from '../Swap'
 import Verify from '../Verify'
 
-const BubbleSort = async (arr, Animate) => {
+const BubbleSort = (arr, Animate) => {
     // const time = Math.floor(Math.pow((10000), 1 / 2))
 
     // let sum = 0
@@ -15,10 +15,11 @@ const BubbleSort = async (arr, Animate) => {
     for (let i = 0; i < arr.length; i++) {
         for (let j = 0; j < (arr.length - i - 1); j++) {
             //console.time("animate")
-            await Animate(arr, { e1: j, e2: (j + 1) }, true, "compare")
+
+            Animate(arr, { e1: j, e2: (j + 1) }, true, "compare")
             if (arr[j] > arr[j + 1]) {
                 Swap(arr, j, j + 1)
-                await Animate(arr, { e1: j, e2: (j + 1) }, true, "swap")
+                Animate(arr, { e1: j, e2: (j + 1) }, true, "swap")
             }
             // console.log(interval)
 
@@ -42,8 +43,8 @@ const BubbleSort = async (arr, Animate) => {
         }
 
     }
-    await Animate(arr, { e1: null, e2: null }, false, "none")
-    await Verify(arr, Animate)
+    Animate(arr, { e1: null, e2: null }, false, "none")
+    Verify(arr, Animate)
     // console.timeEnd("BubbleSort")
 }
 
