@@ -13,7 +13,10 @@
 .none,
 .compare,
 .verify,
-.swap {
+.swap,
+.insert,
+.pivot,
+.parser {
     flex: 1 1 content;
 }
 
@@ -26,9 +29,18 @@
 }
 
 .verify {
-    background-color: green;
+    background-color:darkgreen;
 }
 
 .swap {
-    background-color: blue
+    background-color:midnightblue
+}
+.insert {
+    background-color: crimson
+}
+.pivot {
+    background-color: brown;
+}
+.parser {
+    background-color:orangered;
 }

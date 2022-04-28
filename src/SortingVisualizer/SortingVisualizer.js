@@ -8,9 +8,7 @@ import SelectionSort from '../SortingAlgorithms/SelectionSort'
 import QuickSort from '../SortingAlgorithms/QuickSort'
 import HeapSort from '../SortingAlgorithms/HeapSort';
 import Descriptions from '../Descriptions';
-import Verify from '../Verify';
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import { Button, Slider, Select, MenuItem, InputLabel } from '@mui/material';
 
 let currentAnimation = { e1: null, e2: null, e3: null }
@@ -20,14 +18,15 @@ let currentSort = null
 let isSorted = false
 let animateType = "none"
 let isSkipped = false
-let id
+let counter = 0;
+let isSlow = false
+let ratio = 1;
 
 
 const SortingVisualizer = () => {
     const [masterArray, setmasterArray] = useState([])
-    const [arraySize, setarraySize] = useState(100)
+    const [arraySize, setarraySize] = useState(84)
     const [pivot, setPivot] = useState('Median of Three')
-    const [sortingSpeed, setsortingSpeed] = useState(2)
     useEffect(() => {
         resetArray()
     }, [arraySize])
@@ -41,17 +40,22 @@ const SortingVisualizer = () => {
         isSorted = false
         currentSort = null
         isSkipped = false
+        isSlow = false
+        ratio = 1
         setmasterArray(array)
     })
     const handleBubbleSort = arr => {
         currentSort = "BubbleSort"
+        isSlow = true
         BubbleSort(arr, Animate)
     }
     const handleSelectionSort = arr => {
+        isSlow = true
         currentSort = "SelectionSort"
         SelectionSort(arr, Animate)
     }
     const handleInsertionSort = arr => {
+        isSlow = true
         currentSort = "InsertionSort"
         InsertionSort(arr, Animate)
     }
@@ -66,53 +70,109 @@ const SortingVisualizer = () => {
     }
     const handleQuickSort = arr => {
         currentSort = "QuickSort"
-        QuickSort(arr, 0, arr.length - 1, Animate, pivot)
+        QuickSort(arr, 0, arr.length-1, Animate, pivot)
     }
     const handleHeapSort = arr => {
         currentSort = "HeapSort"
         HeapSort(arr, Animate)
     }
-    const Animate = (arr, animatedElements, isSwapping, type = "none") => {
+    const handleSkip = ()=>{
+        isSkipped = true
+    }
+    const Animate = async (arr, animatedElements, isSwapping, type = "none") => {
         currentAnimation = animatedElements
         animateType = type
         isSorting = isSwapping
         isReset = false
         if (!isSorting) {
             isSorted = true
+            setmasterArray([...arr])
         }
-        // if (isSkipped) {
-        //     clearTimeout(id)
-        //     console.log("HELLO")
-        // }
-        setmasterArray([...arr])
-        console.log("HELLO")
-        // if (isSwapping && !isSkipped) {
-        //     await Sleep()
-        // }
+        if (!isSkipped && isSwapping) {
+            if (animateType==="verify") {
+                isSlow = false
+                setmasterArray([...arr])
+                await Sleep()
+            }
+            else if (((arraySize>=128) && (animateType="compare"))) {
+                animateType = "parser"
+                counter +=1 
+                if (counter % ratio === 0) {
+                counter = 0
+                    setmasterArray([...arr])
+                    await Sleep()
+                }
+            }
+            else if (arraySize <128) {
+                counter +=1 
+            if (counter % ratio === 0) {
+                counter = 0
+                    setmasterArray([...arr])
+                    await Sleep()
+            }
+            }
+        }
+        else if (!isSwapping) {
+            setmasterArray([...arr])
+        }
     }
     const Sleep = () => {
         let ms = null
-        switch (sortingSpeed) {
-            case 0:
+        switch (arraySize) {
+            case 300:
                 ms = 4
+                if (isSlow) {
+                    ratio = 100
+                }
+                else {
+                    ratio = 5
+                }
                 break;
-            case 1:
-                ms = 4
+            case 228:
+                if (isSlow) {
+                    ms = 4
+                    ratio = 50
+                }
+                else {
+                    ms = 4
+                    ratio = 1
+                }
                 break;
-            case 2:
-                ms = 4
+            case 156:
+                if (isSlow) {
+                    ms = 4
+                    ratio = 15
+                }
+                else {
+                    ms = 10
+                    ratio = 1
+                }
                 break;
-            case 3:
-                ms = 50
+            case 84:
+                if (isSlow) {
+                    ms = 4
+                    ratio = 3
+                }
+                else {
+                    ms = 50
+                    ratio = 1
+                }
                 break;
-            case 4:
-                ms = 250
+            case 12:
+                ratio = 1
+                ms = 500
+                if (isSlow) {
+                    ms = 250
+                }
+                else {
+                    ms = 500
+                }
                 break;
             default:
                 break;
         }
             return new Promise(resolve => {
-                id = setTimeout(resolve, ms)
+                setTimeout(resolve, ms)
             });
     }
 
@@ -140,7 +200,7 @@ const SortingVisualizer = () => {
     }
     return (
         <div className="content">
-            {isSorting && <Button sx={skip} variant="contained" onClick={async ()=>{isSkipped=true}}>Skip To End</Button>}
+            {isSorting && <Button sx={skip} variant="contained" onClick={()=>{handleSkip()}}>Skip To End</Button>}
             <DisplayArray masterArray={masterArray} currentAnimation={currentAnimation} isVerifying={isSorted} type={animateType} />
             <div className='interaction'>
                 <div className="generator">
@@ -175,12 +235,32 @@ const SortingVisualizer = () => {
                 <div className="break"></div>
                 <div className="legend">
                     <h2>Legend</h2>
+                    <div className="legendBlock">
+                        <div className="colorDisplay" id="swap">
+                            <p>Swap</p>
+                        </div>
+                        <div className="colorDisplay" id="compare">
+                            <p>Compare</p>
+                        </div>
+                        <div className="colorDisplay" id="insert">
+                            <p>Insert</p>
+                        </div>
+                        <div className="colorDisplay" id="pivots">
+                            <p>Pivot</p>
+                        </div>
+                        <div className="colorDisplay" id="parser">
+                            <p>Parser</p>
+                        </div>
+                        <div className="colorDisplay" id="verify">
+                            <p>Verify</p>
+                        </div>
+                    </div>
                 </div>
                 <div className="break"></div>
                 {isReset && <div className="options">
                     <div className="option">
                     <InputLabel id="size">Array Size</InputLabel>
-                    <Slider size="small" sx={slideSettings} onChange={e => { setarraySize(e.target.value) }} step={10} max={300} min={10} disabled={!isReset} valueLabelDisplay="on" value={arraySize} id="size" />
+                    <Slider size="small" sx={slideSettings} onChange={e => { setarraySize(e.target.value) }} step={72} max={300} min={12} disabled={!isReset} valueLabelDisplay="on" value={arraySize} id="size" />
                     </div>
                     <div className="option">
                     <InputLabel id="pivot">Pivot Selection</InputLabel>
@@ -188,12 +268,10 @@ const SortingVisualizer = () => {
                         <MenuItem value="Median of Three">Median of Three</MenuItem>
                         <MenuItem value="Random">Random</MenuItem>
                         <MenuItem value="First">First</MenuItem>
-                        <MenuItem value="Last">Last</MenuItem>
                     </Select>
                     </div>
                     <div className="option">
-                    <InputLabel id="speed">Sorting Speed</InputLabel>
-                    <Slider size="small" sx={slideSettings} onChange={e => { setsortingSpeed(e.target.value) }} marks step={1} max={4} min={0} disabled={!isReset} valueLabelDisplay="on" value={sortingSpeed} id="speed" />
+                    
                     </div>
                     
                     

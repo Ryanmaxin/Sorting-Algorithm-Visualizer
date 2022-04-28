@@ -17,7 +17,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 1vh 0 0 0;
-    width: 40%
+    width: 35%
 }
 
 .sortButton {
@@ -29,7 +29,7 @@
     display: flex;
     flex: 6 0 0;
     padding: 1vh 0.5% 1vh 0;
-    width: 40%;
+    width: 35%;
     flex-wrap: wrap;
     column-gap: 5%
 }
@@ -50,7 +50,7 @@
     flex: 12 1 0;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 80%
+    width: 70%
 }
 
 .about h2 {
@@ -69,11 +69,45 @@
 }
 
 .legend {
-    width: 10%;
+    width: 20%;
     padding: 1vh 0 1vh 0;
     text-align: center;
 }
 
 .legend h2 {
     margin: 0
+}
+.colorDisplay {
+    min-width: 47.5%
+}
+.legendBlock {
+    height: 10vh;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 5%;
+}
+
+.legendBlock p {
+    margin: 0
+}
+
+#compare {
+    background-color: rgb(136, 11, 119);
+}
+
+#verify {
+    background-color:darkgreen;
+}
+
+#swap {
+    background-color:midnightblue
+}
+#insert {
+    background-color: crimson
+}
+#pivots {
+    background-color: brown;
+}
+#parser {
+    background-color:orangered;
 }

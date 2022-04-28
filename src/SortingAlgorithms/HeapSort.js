@@ -50,7 +50,7 @@ const HeapSort = async (arr, Animate) => {
 
       // Else swap elements
       Swap(heap, i, index);
-      await Animate(arr, { e1: i, e2: index }, true)
+      await Animate(arr, { e1: i, e2: index }, true,"swap")
 
       // Continue by using the swapped index
       i = index;
@@ -66,13 +66,13 @@ const HeapSort = async (arr, Animate) => {
   // One element left
   while (lastElement > 0) {
     Swap(arr, 0, lastElement);
-    await Animate(arr, { e1: 0, e2: lastElement }, true)
+    await Animate(arr, { e1: 0, e2: lastElement }, true,"swap")
     await Heapify(arr, 0, lastElement);
     lastElement -= 1;
   }
 
   // Return sorted array
-  await Animate(arr, { e1: null, e2: null }, false)
+  await Animate(arr, { e1: null, e2: null }, false,"none")
   await Verify(arr, Animate)
   return arr;
 }

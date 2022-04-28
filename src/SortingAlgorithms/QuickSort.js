@@ -19,22 +19,21 @@ const QuickSort = async (arr, left, right, Animate, pivotType) => {
         else if (pivotType === "First") {
             pivotIndex = left
         }
-        else if (pivotType === "Last") {
-            pivotIndex = right - 1
-        }
         let pivot = arr[pivotIndex], //middle element
             i = left, //left pointer
             j = right; //right pointer
         while (i <= j) {
             while (arr[i] < pivot) {
+                await Animate(arr, { e1: i, e2: j, e3: pivotIndex }, true,"compare")
                 i++;
             }
             while (arr[j] > pivot) {
+                await Animate(arr, { e1: i, e2: j, e3: pivotIndex }, true,"compare")
                 j--;
             }
             if (i <= j) {
                 Swap(arr, i, j); //swapping two elements
-                await Animate(arr, { e1: i, e2: j, e3: pivotIndex }, true)
+                await Animate(arr, { e1: i, e2: j, e3: pivotIndex }, true,"swap")
                 i++;
                 j--;
             }
@@ -52,7 +51,7 @@ const QuickSort = async (arr, left, right, Animate, pivotType) => {
         }
     }
     if ((right === arr.length - 1) && (left === 0)) {
-        await Animate([...arr], { e1: null, e2: null, e3: null }, false)
+        await Animate([...arr], { e1: null, e2: null, e3: null }, false,"none")
         await Verify(arr, Animate)
     }
     return arr;
