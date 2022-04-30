@@ -2,6 +2,14 @@
     overflow: hidden;
 }
 
+#selection li {
+    overflow:visible !important;
+}
+
+#merge li {
+    overflow:visible !important
+}
+
 html,
 body {
     width: 100%;
@@ -10,4 +18,41 @@ body {
     padding: 0px;
     overflow-x: hidden;
     background-color: black;
+
+}
+
+@media screen and (max-width: 1600px) {
+    :root {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    :root {
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    :root {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    :root {
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    :root {
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    :root {
+        font-size: 6px;
+    }
 }

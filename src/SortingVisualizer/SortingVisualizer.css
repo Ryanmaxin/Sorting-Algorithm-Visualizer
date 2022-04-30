@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
 
 :root {
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif !important;
 }
 
 .interaction {
@@ -9,6 +9,10 @@
     height: 15vh;
     background-color: grey;
     display: flex;
+}
+
+.generator {
+    padding-right: 0.5rem
 }
 
 .sorts {
@@ -21,47 +25,57 @@
 }
 
 .sortButton {
-    width: 30%;
-    padding: 0 0 1vh 0
+    width: 28%;
+    padding: 0 0.5rem 1vh 0.5rem;
+    flex: 1 1 30%;
+    border-radius: 4rem;
+    text-transform: none;
+    font-family: 'Source Sans Pro', sans-serif;
+    min-width: 30%
 }
 
 .options {
     display: flex;
     flex: 6 0 0;
-    padding: 1vh 0.5% 1vh 0;
+    padding: 1vh 0.5% 1vh 0.5%;
     width: 35%;
     flex-wrap: wrap;
     column-gap: 5%
 }
 
 .option {
-    width: 47.5%
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
+
+.optionComponent {
+    display: flex;
+    align-items: center;
+}
+
 
 .break {
     border: 2px solid black;
     border-radius: 50px;
-    margin: 1vh 0.5% 1vh 0.5%
+    margin: 1vh 0 1vh 0
 }
 
 .about {
-    padding: 1vh 0 1vh 0;
-    display: flex;
-    flex: 12 1 0;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    padding: 1vh 0.5rem 1vh 0.5rem;
     width: 70%
 }
 
 .about h2 {
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 .about p {
-    width: 70%;
-    margin: 0;
-    display: inline-block;
+    width: 100%;
+    margin: 0.25rem 0 0.25rem 0;
+    font-size: 90%;
 }
 
 .generator {
@@ -70,21 +84,36 @@
 
 .legend {
     width: 20%;
-    padding: 1vh 0 1vh 0;
+    padding: 1vh 0.5rem 1vh 0.5rem;
     text-align: center;
+    height: 13vh
 }
 
 .legend h2 {
-    margin: 0
+    margin: 0;
+    height: 4vh;
 }
 .colorDisplay {
-    min-width: 47.5%
+    width: auto;
+    min-width: 30%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 2px solid black;
+    flex: 1 1 30%
+}
+
+.colorDisplay:hover {
+    filter: brightness(200%)
 }
 .legendBlock {
-    height: 10vh;
     display: flex;
-    flex-wrap: wrap;
-    column-gap: 5%;
+    flex-flow: row wrap;
+    height: 9vh;
+    column-gap: 0.2rem;
+    justify-content: space-between;
+    row-gap: 0.20rem
 }
 
 .legendBlock p {
@@ -110,4 +139,19 @@
 }
 #parser {
     background-color:orangered;
+}
+
+#selection li {
+    display: inline;
+    margin-right: 0.5rem
+}
+
+#selection ul {
+    padding: 0;
+    margin: 0
+}
+
+#merge ol {
+    margin: 0;
+    padding: 0;
 }

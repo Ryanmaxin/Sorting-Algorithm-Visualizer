@@ -9,7 +9,7 @@ import QuickSort from '../SortingAlgorithms/QuickSort'
 import HeapSort from '../SortingAlgorithms/HeapSort';
 import Descriptions from '../Descriptions';
 import * as React from 'react';
-import { Button, Slider, Select, MenuItem, InputLabel } from '@mui/material';
+import { Button, Slider, Select, MenuItem, InputLabel, Tooltip } from '@mui/material';
 
 let currentAnimation = { e1: null, e2: null, e3: null }
 let isSorting = false
@@ -135,7 +135,7 @@ const SortingVisualizer = () => {
                 }
                 else {
                     ms = 4
-                    ratio = 1
+                    ratio = 2
                 }
                 break;
             case 156:
@@ -144,7 +144,7 @@ const SortingVisualizer = () => {
                     ratio = 15
                 }
                 else {
-                    ms = 10
+                    ms = 4
                     ratio = 1
                 }
                 break;
@@ -154,7 +154,7 @@ const SortingVisualizer = () => {
                     ratio = 3
                 }
                 else {
-                    ms = 50
+                    ms = 25
                     ratio = 1
                 }
                 break;
@@ -177,26 +177,42 @@ const SortingVisualizer = () => {
     }
 
     const sortButton = {
-        flex: "1 1 auto",
+        flex: "1 1 30%",
         borderRadius: "4rem",
         width: "100%",
         height: "100%",
         textTransform: "none",
-        padding: "0"
+        padding: "0 ",
+        fontFamily: "'Source Sans Pro', sans-serif",
+        minWidth: "30%"
+
     }
     const generate = {
         borderRadius: "0",
         height: "100%",
-        width: "100%"
+        width: "100%",
+        textTransform: "none",
+        minWidth: "0",
+        fontFamily: "'Source Sans Pro', sans-serif"
     }
     const skip = {
-        position: "absolute",
+        position: "fixed",
         top: "0.5rem",
-        left: "45%",
-        right: "45%"
+        left: "50%",
+        transform: "translate(-50%, 0)",
+        fontFamily: "'Source Sans Pro', sans-serif"
     }
     const slideSettings = {
-        // width: "50%"
+        width: "100%",
+        fontFamily: "'Source Sans Pro', sans-serif"
+    }
+    const selectSettings = {
+        // minWidth: "10.8rem",
+        fontFamily: "'Source Sans Pro', sans-serif",
+        padding: "0",
+    }
+    const fontSetter = {
+        fontFamily: "'Source Sans Pro', sans-serif"
     }
     return (
         <div className="content">
@@ -236,44 +252,54 @@ const SortingVisualizer = () => {
                 <div className="legend">
                     <h2>Legend</h2>
                     <div className="legendBlock">
+                        <Tooltip sx={fontSetter} title="Swap the value of two elements of the array">
                         <div className="colorDisplay" id="swap">
                             <p>Swap</p>
                         </div>
+                        </Tooltip>
+                        <Tooltip sx={fontSetter} title="Compare if some condition is passed for two elements" disableInteractive>
                         <div className="colorDisplay" id="compare">
                             <p>Compare</p>
                         </div>
+                        </Tooltip>
+                        <Tooltip sx={fontSetter} title="Insert a value from an auxillery array or variable that was previously stored" disableInteractive>
                         <div className="colorDisplay" id="insert">
                             <p>Insert</p>
                         </div>
+                        </Tooltip>
+                        <Tooltip sx={fontSetter} title="In this implementation of Quicksort, the pivot is the element that we designate to partition the array, making each element on the left smaller, and each on the right larger" disableInteractive>
                         <div className="colorDisplay" id="pivots">
                             <p>Pivot</p>
                         </div>
+                        </Tooltip>
+                        <Tooltip sx={fontSetter} title="On faster animations (larger array), the 'parser' is used to simplify the sort, as individual colors can not be distinguished, and the constant flashing can become an eyesore" disableInteractive>
                         <div className="colorDisplay" id="parser">
                             <p>Parser</p>
                         </div>
+                        </Tooltip>
+                        <Tooltip sx={fontSetter} title="Verify that the array is sorted" disableInteractive>
                         <div className="colorDisplay" id="verify">
                             <p>Verify</p>
                         </div>
+                        </Tooltip>
                     </div>
                 </div>
-                <div className="break"></div>
+                {isReset && <div className="break"></div>}
                 {isReset && <div className="options">
                     <div className="option">
-                    <InputLabel id="size">Array Size</InputLabel>
-                    <Slider size="small" sx={slideSettings} onChange={e => { setarraySize(e.target.value) }} step={72} max={300} min={12} disabled={!isReset} valueLabelDisplay="on" value={arraySize} id="size" />
+                    <InputLabel sx={fontSetter} id="size">Array Size</InputLabel>
+                    <Slider size="small" sx={slideSettings} onChange={e => { setarraySize(e.target.value) }} step={72} max={300} min={12} disabled={!isReset} value={arraySize} id="size" />
                     </div>
-                    <div className="option">
-                    <InputLabel id="pivot">Pivot Selection</InputLabel>
-                    <Select sx={slideSettings} onChange={e => { setPivot(e.target.value) }} value={pivot} autoWidth={false} id="pivot" disabled={!isReset}>
+                        <div className="optionComponent">
+                    <InputLabel sx={fontSetter} id="pivot">Pivot Selection</InputLabel>
+                    </div>
+                    <div className="optionComponent">
+                    <Select SelectDisplayProps={{ style: { padding:"1rem"}}} sx={selectSettings} onChange={e => { setPivot(e.target.value) }} value={pivot} id="pivot" disabled={!isReset}>
                         <MenuItem value="Median of Three">Median of Three</MenuItem>
                         <MenuItem value="Random">Random</MenuItem>
                         <MenuItem value="First">First</MenuItem>
                     </Select>
                     </div>
-                    <div className="option">
-                    
-                    </div>
-                    
                     
                 </div>}
             </div>
