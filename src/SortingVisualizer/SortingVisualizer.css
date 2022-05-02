@@ -7,7 +7,7 @@
 .interaction {
     margin: auto;
     height: 15vh;
-    background-color: grey;
+    background-color: #d9d9d9;
     display: flex;
 }
 
@@ -17,7 +17,7 @@
 
 .sorts {
     display: flex;
-    flex: 1 1 auto;
+    flex: 3 1 auto;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 1vh 0 0 0;
@@ -27,16 +27,28 @@
 .sortButton {
     width: 28%;
     padding: 0 0.5rem 1vh 0.5rem;
-    flex: 1 1 30%;
+    flex: 1 1 28%;
     border-radius: 4rem;
     text-transform: none;
     font-family: 'Source Sans Pro', sans-serif;
-    min-width: 30%
+    max-width: 140px;
+}
+@media screen and (max-width: 1919px) {
+    .sortButton {
+        min-width: 30%;
+        max-width: 1000px;
+    }
+}
+@media screen and (min-width: 1920px) {
+    .sortButton {
+        max-width: 1000px;
+        flex: 1 1
+    }
 }
 
 .options {
     display: flex;
-    flex: 6 0 0;
+    flex: 4 0 0;
     padding: 1vh 0.5% 1vh 0.5%;
     width: 35%;
     flex-wrap: wrap;
@@ -105,7 +117,8 @@
 }
 
 .colorDisplay:hover {
-    filter: brightness(200%)
+    filter: brightness(175%)
+    /* background-color: #284b63 !important; */
 }
 .legendBlock {
     display: flex;
@@ -155,3 +168,7 @@
     margin: 0;
     padding: 0;
 }
+
+.MuiSlider-thumb:is(:hover, .Mui-active) {
+    box-shadow: none !important;
+  }

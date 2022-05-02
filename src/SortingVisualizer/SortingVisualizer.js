@@ -184,7 +184,11 @@ const SortingVisualizer = () => {
         textTransform: "none",
         padding: "0 ",
         fontFamily: "'Source Sans Pro', sans-serif",
-        minWidth: "30%"
+        minWidth: "30%",
+        backgroundColor: "#3c6e71",
+        ':hover': {
+            backgroundColor: "#284b63"
+        }
 
     }
     const generate = {
@@ -193,26 +197,67 @@ const SortingVisualizer = () => {
         width: "100%",
         textTransform: "none",
         minWidth: "0",
-        fontFamily: "'Source Sans Pro', sans-serif"
+        fontFamily: "'Source Sans Pro', sans-serif",
+        backgroundColor: "#3c6e71",
+        ':hover': {
+            backgroundColor: "#284b63"
+        }
+        
     }
     const skip = {
         position: "fixed",
         top: "0.5rem",
         left: "50%",
         transform: "translate(-50%, 0)",
-        fontFamily: "'Source Sans Pro', sans-serif"
+        fontFamily: "'Source Sans Pro', sans-serif",
+        backgroundColor: "#3c6e71",
+        ':hover': {
+            backgroundColor: "#284b63"
+        }
     }
+    
     const slideSettings = {
-        width: "100%",
-        fontFamily: "'Source Sans Pro', sans-serif"
+        width: {
+            xxs: "75%",
+            xs: "80%",
+            sm: "85%",
+            md: "90%",
+            lg: "95%",
+            xl: "95%"
+
+
+        },
+        
+        fontFamily: "'Source Sans Pro', sans-serif",
+        color: "#3c6e71",
+        // padding: "0.5rem"
+        margin:"auto",
+        overflow: "visible",
+        ':hover': {
+            color: "#284b63"
+        }
     }
     const selectSettings = {
         // minWidth: "10.8rem",
         fontFamily: "'Source Sans Pro', sans-serif",
         padding: "0",
+        '.MuiOutlinedInput-notchedOutline': {
+            borderColor: '#3c6e71',
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: '#284b63',
+        },
+        ':hover': {
+            borderColor: "#284b63"
+        }
+    }
+    const selectorSettings = {
+        fontFamily: "'Source Sans Pro', sans-serif",
+          
     }
     const fontSetter = {
-        fontFamily: "'Source Sans Pro', sans-serif"
+        fontFamily: "'Source Sans Pro', sans-serif",
+        color: "black"
     }
     return (
         <div className="content">
@@ -288,16 +333,16 @@ const SortingVisualizer = () => {
                 {isReset && <div className="options">
                     <div className="option">
                     <InputLabel sx={fontSetter} id="size">Array Size</InputLabel>
-                    <Slider size="small" sx={slideSettings} onChange={e => { setarraySize(e.target.value) }} step={72} max={300} min={12} disabled={!isReset} value={arraySize} id="size" />
+                    <Slider marks size="small" sx={slideSettings} onChange={e => { setarraySize(e.target.value) }} step={72} max={300} min={12} disabled={!isReset} value={arraySize} id="size" />
                     </div>
                         <div className="optionComponent">
-                    <InputLabel sx={fontSetter} id="pivot">Pivot Selection</InputLabel>
+                    <InputLabel sx={fontSetter} id="pivot">Pivot</InputLabel>
                     </div>
                     <div className="optionComponent">
-                    <Select SelectDisplayProps={{ style: { padding:"1rem"}}} sx={selectSettings} onChange={e => { setPivot(e.target.value) }} value={pivot} id="pivot" disabled={!isReset}>
-                        <MenuItem value="Median of Three">Median of Three</MenuItem>
-                        <MenuItem value="Random">Random</MenuItem>
-                        <MenuItem value="First">First</MenuItem>
+                    <Select SelectDisplayProps={{ style: { padding:"0.5rem 32px 0.5rem 0.5rem"}}} sx={selectSettings} onChange={e => { setPivot(e.target.value) }} value={pivot} id="pivot" disabled={!isReset}>
+                        <MenuItem sx={selectorSettings} value="Median of Three">Median of Three</MenuItem>
+                        <MenuItem sx={selectorSettings} value="Random">Random</MenuItem>
+                        <MenuItem sx={selectorSettings} value="First">First</MenuItem>
                     </Select>
                     </div>
                     
