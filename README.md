@@ -5,47 +5,26 @@ A website that allows the user to visualize sorting algorithms. The sort type, a
 #### Current Sorts include:
 
 Bubble Sort
+
 Selection Sort
+
 Insertion Sort
+
 Merge Sort
+
 Heap Sort
+
 Quick Sort
 
-#### Example:
-
-TweetWorld 
-
-An application used to filter data form Twitter based on user preference, built with React, Redux, JavaScript, and CSS.
-
-## Project Screen Shot(s)
-
-#### Example:   
+### Example  
 
 [ PRETEND SCREEN SHOT IS HERE ]
 
 [ PRETEND OTHER SCREEN SHOT IS HERE ]
 
-## Installation and Setup Instructions
+### How to Run
 
-#### Example:  
-
-Clone down this repository. You will need `node` and `npm` installed globally on your machine.  
-
-Installation:
-
-`npm install`  
-
-To Run Test Suite:  
-
-`npm test`  
-
-To Start Server:
-
-`npm start`  
-
-To Visit App:
-
-`localhost:3000/ideas`  
+Simply go to: 
 
 ## Reflection
 
