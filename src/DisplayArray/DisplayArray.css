@@ -33,18 +33,21 @@
 }
 
 .verify {
-    background-color:darkgreen;
+    background-color: darkgreen;
 }
 
 .swap {
-    background-color:midnightblue
+    background-color: midnightblue
 }
+
 .insert {
     background-color: crimson
 }
+
 .pivot {
     background-color: brown;
 }
+
 .parser {
-    background-color:orangered;
+    background-color: orangered;
 }

@@ -33,12 +33,14 @@
     font-family: 'Source Sans Pro', sans-serif;
     max-width: 140px;
 }
+
 @media screen and (max-width: 1919px) {
     .sortButton {
         min-width: 30%;
         max-width: 1000px;
     }
 }
+
 @media screen and (min-width: 1920px) {
     .sortButton {
         max-width: 1000px;
@@ -82,12 +84,30 @@
 .about h2 {
     margin: 0;
     padding: 0;
+    height: 3vh;
+}
+
+@media screen and (max-width: 800px) {
+    .about h2 {
+        margin: 0;
+        padding: 0;
+        height: 1vh !important;
+
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .about h2 {
+        margin: 0;
+        padding: 0;
+        height: 2vh !important;
+
+    }
 }
 
 .about p {
     width: 100%;
     margin: 0.25rem 0 0.25rem 0;
-    font-size: 90%;
 }
 
 .generator {
@@ -104,7 +124,9 @@
 .legend h2 {
     margin: 0;
     height: 4vh;
+    font-size: 200% !important;
 }
+
 .colorDisplay {
     width: auto;
     min-width: 30%;
@@ -118,8 +140,9 @@
 
 .colorDisplay:hover {
     filter: brightness(175%)
-    /* background-color: #284b63 !important; */
+        /* background-color: #284b63 !important; */
 }
+
 .legendBlock {
     display: flex;
     flex-flow: row wrap;
@@ -138,20 +161,23 @@
 }
 
 #verify {
-    background-color:darkgreen;
+    background-color: darkgreen;
 }
 
 #swap {
-    background-color:midnightblue
+    background-color: midnightblue
 }
+
 #insert {
     background-color: crimson
 }
+
 #pivots {
     background-color: brown;
 }
+
 #parser {
-    background-color:orangered;
+    background-color: orangered;
 }
 
 #selection li {
@@ -171,4 +197,4 @@
 
 .MuiSlider-thumb:is(:hover, .Mui-active) {
     box-shadow: none !important;
-  }
+}
