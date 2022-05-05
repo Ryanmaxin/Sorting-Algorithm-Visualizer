@@ -39,6 +39,10 @@
         min-width: 30%;
         max-width: 1000px;
     }
+
+    .legend h2 {
+        font-size: 300% !important;
+    }
 }
 
 @media screen and (min-width: 1920px) {
@@ -124,7 +128,6 @@
 .legend h2 {
     margin: 0;
     height: 4vh;
-    font-size: 200% !important;
 }
 
 .colorDisplay {
