@@ -141,6 +141,10 @@
     flex: 1 1 30%
 }
 
+.colorDisplay p {
+    cursor: default
+}
+
 .colorDisplay:hover {
     filter: brightness(175%)
         /* background-color: #284b63 !important; */

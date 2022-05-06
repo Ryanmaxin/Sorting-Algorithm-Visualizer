@@ -122,20 +122,20 @@ const SortingVisualizer = () => {
             case 300:
                 ms = 4
                 if (isSlow) {
-                    ratio = 100
+                    ratio = 35
                 }
                 else {
-                    ratio = 5
+                    ratio = 2
                 }
                 break;
             case 228:
                 if (isSlow) {
                     ms = 4
-                    ratio = 50
+                    ratio = 20
                 }
                 else {
                     ms = 4
-                    ratio = 2
+                    ratio = 1
                 }
                 break;
             case 156:
@@ -144,7 +144,7 @@ const SortingVisualizer = () => {
                     ratio = 15
                 }
                 else {
-                    ms = 4
+                    ms = 10
                     ratio = 1
                 }
                 break;
