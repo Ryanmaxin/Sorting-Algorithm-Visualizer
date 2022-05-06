@@ -1,6 +1,6 @@
 ## Sorting Algorithm Visualizer:
 
-A website that allows the user to visualize sorting algorithms. The sort type, animation speed, array size, and pivot selection (for quicksort) can all be interacted with. 
+A website that allows the user to visualize sorting algorithms. The sort type, animation speed, array size, and pivot selection (for quicksort) can all be interacted with. This website was built in react, and makes use of material ui to style some componenets.
 
 #### Current Sorts include:
 
@@ -16,31 +16,22 @@ Heap Sort
 
 Quick Sort
 
-### Example  
+![Sorting Visualizer 1](https://user-images.githubusercontent.com/90675771/167058861-ea13e568-8557-4e02-bad5-f998004cfd43.png)
 
-[ PRETEND SCREEN SHOT IS HERE ]
+*Default Website Layout*
 
-[ PRETEND OTHER SCREEN SHOT IS HERE ]
+![Sorting Visualizer 2](https://user-images.githubusercontent.com/90675771/167058865-ad322867-1a44-48d5-b880-056461d9680e.png)
+
+*Picture during a merge sort*
 
 ### How to Run
 
-Simply go to: 
+Simply go to: https://ryanmaxin.github.io/Sorting-Algorithm-Visualizer/
 
 ## Reflection
 
-  - What was the context for this project? (ie: was this a side project? was this for Turing? was this for an experiment?)
-  - What did you set out to build?
-  - Why was this project challenging and therefore a really good learning experience?
-  - What were some unexpected obstacles?
-  - What tools did you use to implement this project?
-      - This might seem obvious because you are IN this codebase, but to all other humans now is the time to talk about why you chose webpack instead of create react app, or D3, or vanilla JS instead of a framework etc. Brag about your choices and justify them here.  
+This was a on-off project I worked on for over two months in my free time in my first term at the University of Waterloo. The main goal of this project was to help me build and solidify knowledge of many of the most common sorting algorithms.
 
-#### Example:  
+Ultimitely I found myself also learning a ton about the call stack, as I had to use asynchronous JavaScript extensively to properly animate the sorting. This project was also the first website I attempted to create a professional, visually pleasing user interface. I personally planned out the design and spent countless hours making sure the website followed this plan and stayed responsive for all screen sizes. 
 
-This was a 3 week long project built during my third module at Turing School of Software and Design. Project goals included using technologies learned up until this point and familiarizing myself with documentation for new features.  
-
-Originally I wanted to build an application that allowed users to pull data from the Twitter API based on what they were interested in, such as 'most tagged users'. I started this process by using the `create-react-app` boilerplate, then adding `react-router-4.0` and `redux`.  
-
-One of the main challenges I ran into was Authentication. This lead me to spend a few days on a research spike into OAuth, Auth0, and two-factor authentication using Firebase or other third parties. Due to project time constraints, I had to table authentication and focus more on data visualization from parts of the API that weren't restricted to authenticated users.
-
-At the end of the day, the technologies implemented in this project are React, React-Router 4.0, Redux, LoDash, D3, and a significant amount of VanillaJS, JSX, and CSS. I chose to use the `create-react-app` boilerplate to minimize initial setup and invest more time in diving into weird technological rabbit holes. In the next iteration I plan on handrolling a `webpack.config.js` file to more fully understand the build process.
+I spent a lot more time then I ideally would have liked styling the Material UI elements (it was my first time implementing them). I also had difficulty scaling the text to fit the "about" div as screen sizes grew or shrank. In the end I was able to fix all of these issues and I gained experience with how to deal with them for the future. Overall I am very happy how this project turned out, and hope any one reading this can get some value out of too!
