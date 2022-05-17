@@ -1,6 +1,6 @@
 ## Sorting Algorithm Visualizer:
 
-A website that allows the user to visualize sorting algorithms. The sort type, animation speed, array size, and pivot selection (for quicksort) can all be interacted with. This website was built in react, and makes use of material ui to style some componenets.
+A website that allows the user to visualize sorting algorithms. The sort type, animation speed, array size, and pivot selection (for quicksort) can all be interacted with. This website was built in react, and makes use of material ui to style some components.
 
 #### Current Sorts include:
 
@@ -30,7 +30,7 @@ Simply go to: https://ryanmaxin.github.io/Sorting-Algorithm-Visualizer/
 
 ## Reflection
 
-This was a on-off project I worked on for over two months in my free time in my first term at the University of Waterloo. The main goal of this project was to help me build and solidify knowledge of many of the most common sorting algorithms.
+This was a on-off project I worked on for over two months in my free time. The main goal of this project was to help me build and solidify knowledge of many of the most common sorting algorithms.
 
 Ultimitely I found myself also learning a ton about the call stack, as I had to use asynchronous JavaScript extensively to properly animate the sorting. This project was also the first website I attempted to create a professional, visually pleasing user interface. I personally planned out the design and spent countless hours making sure the website followed this plan and stayed responsive for all screen sizes. 
 
