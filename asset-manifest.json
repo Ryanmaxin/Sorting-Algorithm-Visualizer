@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Sorting-Algorithm-Visualizer/static/css/main.954da416.css",
+    "main.css": "/Sorting-Algorithm-Visualizer/static/css/main.7327b448.css",
     "main.js": "/Sorting-Algorithm-Visualizer/static/js/main.69e05cfb.js",
     "index.html": "/Sorting-Algorithm-Visualizer/index.html",
-    "main.954da416.css.map": "/Sorting-Algorithm-Visualizer/static/css/main.954da416.css.map",
+    "main.7327b448.css.map": "/Sorting-Algorithm-Visualizer/static/css/main.7327b448.css.map",
     "main.69e05cfb.js.map": "/Sorting-Algorithm-Visualizer/static/js/main.69e05cfb.js.map"
   },
   "entrypoints": [
-    "static/css/main.954da416.css",
+    "static/css/main.7327b448.css",
     "static/js/main.69e05cfb.js"
   ]
 }
