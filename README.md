@@ -2,6 +2,10 @@
 
 A website that allows the user to visualize sorting algorithms. The sort type, animation speed, array size, and pivot selection (for quicksort) can all be interacted with. This website was built in react, and makes use of material ui to style some components.
 
+### How to Run
+
+Simply go to: https://ryanmaxin.github.io/Sorting-Algorithm-Visualizer/
+
 #### Current Sorts include:
 
 Bubble Sort
@@ -23,10 +27,6 @@ Quick Sort
 ![Sorting Visualizer 2](https://user-images.githubusercontent.com/90675771/167058865-ad322867-1a44-48d5-b880-056461d9680e.png)
 
 *Picture during a merge sort*
-
-### How to Run
-
-Simply go to: https://ryanmaxin.github.io/Sorting-Algorithm-Visualizer/
 
 ## Reflection
 
