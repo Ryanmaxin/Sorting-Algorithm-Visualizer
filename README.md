@@ -1,5 +1,7 @@
 ## Sorting Algorithm Visualizer:
 
+*I've been fascinated with sorting algorithms ever since I first learned about them. This visualizer tool was born out of that curiosity, turning complex algorithms into interactive visuals that bring theory to life.*
+
 A website that allows the user to visualize sorting algorithms. The sort type, animation speed, array size, and pivot selection (for quicksort) can all be interacted with. This website was built in react, and makes use of material ui to style some components.
 
 ### How to Run
